@@ -4,6 +4,7 @@ class ApplicationController < Sinatra::Base
 
   configure do
     enable :sessions
+    register Sinatra::Flash
     set :session_secret, "eteamapp-2244"
 
     set :public_folder, 'public'
