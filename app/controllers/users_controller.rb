@@ -31,7 +31,7 @@ class UsersController < ApplicationController
         @user = User.find_by(:email => params[:email])
             if @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
-                redirect '/teams'
+                redirect '/'
             else
                 erb :'users/login'
         end
