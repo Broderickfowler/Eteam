@@ -5,6 +5,6 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 
-use TeamsController
+#use TeamsController
 use UsersController
 run ApplicationController
