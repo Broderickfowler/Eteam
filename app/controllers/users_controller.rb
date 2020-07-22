@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
     
     get '/signup' do
+        if logged_in?
+            redirect '/teams'
         erb :'users/new'
     end
 
