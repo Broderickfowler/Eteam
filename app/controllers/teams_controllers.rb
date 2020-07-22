@@ -5,5 +5,9 @@ class TeamsController < ApplicationController
         @teams = @user.teams.all
         erb :'teams/index'
     end
+
+    get '/teams/new' do 
+        erb :'teams/new'
+    end
     
 end
