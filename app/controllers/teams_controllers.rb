@@ -27,6 +27,16 @@ class TeamsController < ApplicationController
             erb :'teams/new'
          end
     end
+
+    post '/teams/:id/players' do
+        @team = current_user.teams.find(params[:id])
+        @player = @team.players.build(:gamertag => params[:gamertag])
+        if @player.save
+            redirect "/teams/#{@team.id}"
+        else
+         erb :"teams/show.html"
+        end
+    end
     
     
 end
