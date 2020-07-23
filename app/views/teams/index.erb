@@ -4,16 +4,17 @@
 <br>
 <div>
     <% @teams.each do |team|%>
-        <p><a href="/teams/<%= team.id %>"<%= team.name%>></a> </p>
-        <%end%>
+    <p><a href="/teams/<%= team.id %>"> <%= team.name%></a></p>
+    <% end %>
 </div>
 <br>
-<h3> Teams made by other Users!</h3>
-<br>
-
+ <h3> Teams made by other Users! </h3>
+ <br>
 <div>
-    <% @teams.each do |team|%>
-    <p>Team Name: <%= team.name%> </p>
+   
+    <% Team.all.each do |team|%>
+    <p>Team Name: <%= team.name %> </p>
     <p>Created By: <%= team.user.email%> </p>
-    <%end%>
+    <% end %>
+
 </div>
