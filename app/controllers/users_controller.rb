@@ -24,9 +24,9 @@ class UsersController < ApplicationController
     get '/login' do
      if logged_in?
         flash[:notice] ="You are already logged in"
-        redirect '/'
-     else
         erb :'users/login'
+     else
+        redirect '/teams'
      end
     end
     
@@ -35,9 +35,9 @@ class UsersController < ApplicationController
         @user = User.find_by(:email => params[:email])
             if @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
-                redirect '/'
+                redirect '/teams'
             else
-                erb :'users/login'
+                erb :'users/signup'
         end
     end
 
