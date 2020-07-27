@@ -22,8 +22,8 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
-     if logged_in?
-        flash[:notice] ="You are already logged in"
+     if !logged_in?
+        flash[:notice] ="You need to logged in"
         erb :'users/login'
      else
         redirect '/teams'

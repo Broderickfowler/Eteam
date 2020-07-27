@@ -4,8 +4,12 @@ class TeamsController < ApplicationController
     end
 
     get '/teams' do
-        @teams = current_user.teams
-        erb :'teams/index'
+        if logged_in?
+            @teams = Team.all
+            erb :'teams/index'
+        else
+            redirect '/login'
+        end
     end
 
     get '/teams/new' do
@@ -49,6 +53,7 @@ class TeamsController < ApplicationController
         @team = Team.find_by_id(params[:id])
         @team.update(params[:team])
             redirect "/teams/#{@team.id}"
-        end
+        
+    end
     
 end
