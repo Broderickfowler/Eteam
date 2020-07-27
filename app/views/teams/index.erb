@@ -8,13 +8,13 @@
     <% end %>
 </div>
 <br>
- <h3> Teams made by other Users! </h3>
- <br>
-<div>
-   
-    <% Team.all.each do |team|%>
-    <p>Team Name: <%= team.name %> </p>
-    <p>Created By: <%= team.user.email%> </p>
-    <% end %>
+<h3> Teams made by other Users!</h3>
+<br>
 
+<div>
+    <% Team.all.each do |team|%>
+    <p>Team Name: <%= team.name%> </p>
+    <p>Created By: <%= team.user.email%> </p>
+    <p>Platform: <%= team.platform%> </p>
+    <%end%>
 </div>

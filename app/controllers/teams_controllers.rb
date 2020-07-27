@@ -20,9 +20,10 @@ class TeamsController < ApplicationController
     post '/teams' do
         @team = Team.new
         @team.name = params[:name]
+        @team.platform = params[:platform]
         @team.user = current_user
          if @team.save
-             redirect '/teams'
+             redirect "/teams/#{@team.id}"
          else
             erb :'teams/new'
          end
@@ -34,7 +35,7 @@ class TeamsController < ApplicationController
         if @player.save
             redirect "/teams/#{@team.id}"
         else
-         erb :"teams/show.html"
+         erb :"teams/show"
         end
     end
     

@@ -1,9 +1,11 @@
 <h1><%= @team.name %></h1>
+<p>Platform: <%= @team.platform %> </p>
 
 <ol>
     <% @team.players.each do |player| %>
         <li><%= player.gamertag %></li>
         <% end %>
+   
 </ol>
 
 <form action="/teams/<%= @team.id %>/players" method="POST">
