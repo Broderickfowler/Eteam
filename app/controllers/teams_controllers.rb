@@ -59,9 +59,9 @@ class TeamsController < ApplicationController
         
     end
 
-    get '/teams/:id/delete' do
+    delete '/teams/:id/delete' do
         if logged_in?
-            @team = current_user.teams.find(params[:id])
+            @team = current_user.teams.find_by_id(params[:id])
             @team.delete
             redirect '/teams'
         else
