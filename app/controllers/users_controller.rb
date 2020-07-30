@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         @user = User.new
         @user.email = params[:email]
         @user.password = params[:password]
-
+        
             if @user.save
                 redirect '/'
             else

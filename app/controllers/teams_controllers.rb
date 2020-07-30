@@ -17,7 +17,8 @@ class TeamsController < ApplicationController
     end
 
     get '/teams/:id' do
-        @team = current_user.teams.find(params[:id])
+        @team = current_user.teams.find_by_id(params[:id])
+        binding.pry
         erb :'teams/show'
     end
 
@@ -26,6 +27,7 @@ class TeamsController < ApplicationController
         @team.name = params[:name]
         @team.platform = params[:platform]
         @team.user = current_user
+        current_user.teams << @team
          if @team.save
              redirect "/teams/#{@team.id}"
          else
@@ -34,7 +36,7 @@ class TeamsController < ApplicationController
     end
 
     post '/teams/:id/players' do
-        @team = current_user.teams.find(params[:id])
+        @team = current_user.teams.find_by_id(params[:id])
         @player = @team.players.build(:gamertag => params[:gamertag])
         if @player.save
             redirect "/teams/#{@team.id}"
@@ -45,7 +47,7 @@ class TeamsController < ApplicationController
     
 
     get '/teams/:id/edit' do
-        @team = current_user.teams.find(params[:id])
+        @team = current_user.teams.find_by_id(params[:id])
         erb :'teams/edit'
     end
     
@@ -54,6 +56,16 @@ class TeamsController < ApplicationController
         @team.update(params[:team])
             redirect "/teams/#{@team.id}"
         
+    end
+
+    get '/teams/:id/delete' do
+        if logged_in?
+            @team = current_user.teams.find(params[:id])
+            @team.delete
+            redirect '/teams'
+        else
+            redirect to '/login'
+        end
     end
     
 end
