@@ -10,15 +10,19 @@ class UsersController < ApplicationController
 
 
     post '/users' do 
+        if params[:email] == "" || params[:password] == ""
+            flash[:notice] = "You must enter in a email and password"
+            redirect to '/signup'
+        else
+            
         @user = User.new
         @user.email = params[:email]
         @user.password = params[:password]
+         @user.save
+         session[:user_id] = @user.id
+            redirect to '/teams'
         
-            if @user.save
-                redirect '/'
-            else
-                erb :'users/new'
-         end
+        end
     end
 
     get '/login' do
@@ -26,7 +30,7 @@ class UsersController < ApplicationController
         flash[:notice] ="You need to logged in"
         erb :'users/login'
      else
-        redirect '/teams'
+        redirect to '/teams'
      end
     end
     
