@@ -5,7 +5,8 @@ class TeamsController < ApplicationController
 
     get '/teams' do
         if logged_in?
-            @teams = Team.all
+            @user = current_user
+            @teams = @user.teams.all
             erb :'teams/index'
         else
             redirect '/login'
