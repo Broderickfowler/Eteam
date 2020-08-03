@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     post '/users' do 
         if params[:email] == "" || params[:password] == ""
-            flash[:notice] = "You must enter in a email and password"
+            flash[:notice] = "You must enter in a email and password to signup"
             redirect to '/signup'
         else
             
@@ -40,8 +40,11 @@ class UsersController < ApplicationController
             if @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
                 redirect '/teams'
+            elsif params[:email] == "" || params[:password] == ""
+                flash[:notice] = "You must enter in a email and password"
+                redirect '/'
             else
-                erb :'users/signup'
+                redirect '/signup'
         end
     end
 

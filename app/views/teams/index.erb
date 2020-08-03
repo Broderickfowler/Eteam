@@ -12,7 +12,7 @@
 <br>
 
 <div>
-    <% Team.all.each do |team|%>
+    <% @others.each do |team|%>
     <p>Team Name: <%= team.name%> </p>
     <p>Created By: <%= team.user.email%> </p>
     <p>Platform: <%= team.platform%> </p>
