@@ -19,3 +19,4 @@ Eteam is a esports team building site where you can build teams for unique platf
 
     `shotgun`
 
+Enjoy building your own unqiue Esport Team!
